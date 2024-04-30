@@ -10,7 +10,6 @@ import (
 func getHelloWorld(c *gin.Context) {
     c.String(http.StatusOK, "Hello, World!")
 }
-
 func main() {
     router := gin.Default()
     router.GET("/", getHelloWorld)
