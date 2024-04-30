@@ -1,9 +1,7 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "/api/handler.go",
-        "use": "@vercel/build-golang"
-      }
-    ]
+    "trailingSlash":false,
+    "rewrites":[{
+        "source":"/api(.*)",
+        "destination":"/api/index.go"
+    }]
   }

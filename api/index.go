@@ -1,16 +1,26 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
-func HelloHandler(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "Hello from Vercel!"})
+var(
+	app *gin.Engine
+)
+
+func myRoute(r *gin.RouterGroup){
+	r.GET("/hello", func(c *gin.Context){
+		c.String(http.StatusOK,"Hello World")
+	})
 }
 
-func SetupRouter(r *gin.Engine) {
-	r.GET("/hello", HelloHandler)
+func init(){
+	app = gin.New()
+	r := app.Group("/api")
+	myRoute(r)
+}
+
+func Handler(w http.ResponseWriter, r *http.Request){
+	app.ServeHTTP(w,r)
 }
